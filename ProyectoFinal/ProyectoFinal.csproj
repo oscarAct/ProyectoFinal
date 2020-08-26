@@ -185,6 +185,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\shopping-cart.svg" />
     <Content Include="JavaScripts\LoginScript.js" />
     <Content Include="JavaScripts\Querys.js" />
     <Content Include="ProyectoFinal.Context.tt">

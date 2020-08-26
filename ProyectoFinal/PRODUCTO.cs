@@ -23,6 +23,8 @@ namespace ProyectoFinal
     
         public string COD_PRODUCTO { get; set; }
         public string DESCRIPCION { get; set; }
+        public string NOMBRE { get; set; }
+        public Nullable<decimal> PRECIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARRITO_DET> CARRITO_DET { get; set; }

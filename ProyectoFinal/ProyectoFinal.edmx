@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CARRITO_DE_COMPRAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CARRITO_DE_COMPRAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CARRITO_DET">
           <Key>
             <PropertyRef Name="ID_CARRITO" />
@@ -67,6 +67,8 @@
           </Key>
           <Property Name="COD_PRODUCTO" Type="varchar" MaxLength="8" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="255" />
+          <Property Name="PRECIO" Type="money" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -183,8 +185,7 @@
             <End Role="PEDIDO_ENC" EntitySet="PEDIDO_ENC" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CARRITO_DE_COMPRAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -260,6 +261,8 @@
           <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CARRITO_DET" Relationship="Self.FK_CARRITO_DET_PRODUCTO" FromRole="PRODUCTO" ToRole="CARRITO_DET" />
           <NavigationProperty Name="PEDIDO_DET" Relationship="Self.FK_PEDIDO_DET_PRODUCTO" FromRole="PRODUCTO" ToRole="PEDIDO_DET" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -443,6 +446,8 @@
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="CARRITO_DE_COMPRAModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="COD_PRODUCTO" ColumnName="COD_PRODUCTO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
               </MappingFragment>
