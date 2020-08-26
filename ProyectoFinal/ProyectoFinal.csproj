@@ -139,10 +139,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
+    <Compile Include="Controllers\QuerysController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\QuerysModel.cs" />
     <Compile Include="PEDIDO_DET.cs">
       <DependentUpon>ProyectoFinal.tt</DependentUpon>
     </Compile>
@@ -184,6 +186,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="JavaScripts\LoginScript.js" />
+    <Content Include="JavaScripts\Querys.js" />
     <Content Include="ProyectoFinal.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProyectoFinal.Context.cs</LastGenOutput>
@@ -337,6 +340,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="vendor\" />
+    <Folder Include="Views\Querys\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
