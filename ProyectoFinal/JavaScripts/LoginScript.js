@@ -16,13 +16,13 @@ function IniciarSesion() {
         cache: false,
         success: function (data) {
             if(data=="Si")
-                window.location.href = "/Principal/PantallaPrincipal";
+                window.location.href = "../Home/Index";
             else
                 swal("¡Error!", "¡Usuario o contraseña incorrectos!", "error");
         },
         error: function (data) {
             if (data == "Si")
-                window.location.href = "/Principal/PantallaPrincipal";
+                window.location.href = "../Home/Index";
             else
                 swal("¡Error!", "¡Usuario o contraseña incorrectos!", "error");
             
