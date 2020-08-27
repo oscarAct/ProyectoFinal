@@ -136,12 +136,19 @@
     <Compile Include="CARRITO_ENC.cs">
       <DependentUpon>ProyectoFinal.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CarritoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
     <Compile Include="Controllers\QuerysController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LISTARCARRITO_Result.cs">
+      <DependentUpon>ProyectoFinal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LISTAR_PRODUCTOS_Result.cs">
+      <DependentUpon>ProyectoFinal.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\QuerysModel.cs" />
@@ -152,6 +159,9 @@
       <DependentUpon>ProyectoFinal.tt</DependentUpon>
     </Compile>
     <Compile Include="PRODUCTO.cs">
+      <DependentUpon>ProyectoFinal.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRODUCTOSXUSUARIO.cs">
       <DependentUpon>ProyectoFinal.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +185,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -185,7 +196,38 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\Productos\imagen1.jpg" />
+    <Content Include="Img\Productos\imagen10.jpg" />
+    <Content Include="Img\Productos\imagen11.jpg" />
+    <Content Include="Img\Productos\imagen12.jpg" />
+    <Content Include="Img\Productos\imagen13.jpg" />
+    <Content Include="Img\Productos\imagen14.jpg" />
+    <Content Include="Img\Productos\imagen15.jpg" />
+    <Content Include="Img\Productos\imagen16.jpg" />
+    <Content Include="Img\Productos\imagen17.jpg" />
+    <Content Include="Img\Productos\imagen18.jpg" />
+    <Content Include="Img\Productos\imagen19.jpg" />
+    <Content Include="Img\Productos\imagen2.jpg" />
+    <Content Include="Img\Productos\imagen20.jpg" />
+    <Content Include="Img\Productos\imagen21.jpg" />
+    <Content Include="Img\Productos\imagen22.jpg" />
+    <Content Include="Img\Productos\imagen23.jpg" />
+    <Content Include="Img\Productos\imagen24.jpg" />
+    <Content Include="Img\Productos\imagen25.jpg" />
+    <Content Include="Img\Productos\imagen26.jpg" />
+    <Content Include="Img\Productos\imagen27.jpg" />
+    <Content Include="Img\Productos\imagen28.jpg" />
+    <Content Include="Img\Productos\imagen29.jpg" />
+    <Content Include="Img\Productos\imagen3.jpg" />
+    <Content Include="Img\Productos\imagen30.jpg" />
+    <Content Include="Img\Productos\imagen4.jpg" />
+    <Content Include="Img\Productos\imagen5.jpg" />
+    <Content Include="Img\Productos\imagen6.jpg" />
+    <Content Include="Img\Productos\imagen7.jpg" />
+    <Content Include="Img\Productos\imagen8.jpg" />
+    <Content Include="Img\Productos\imagen9.jpg" />
     <Content Include="Img\shopping-cart.svg" />
+    <Content Include="JavaScripts\Carrito.js" />
     <Content Include="JavaScripts\LoginScript.js" />
     <Content Include="JavaScripts\Querys.js" />
     <Content Include="ProyectoFinal.Context.tt">
@@ -310,6 +352,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="vendor\bootstrap-notify.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -337,10 +380,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Carrito\Carrito.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="vendor\" />
     <Folder Include="Views\Querys\" />
   </ItemGroup>
   <ItemGroup>

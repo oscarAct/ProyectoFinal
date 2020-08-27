@@ -20,5 +20,22 @@ namespace ProyectoFinal.Controllers
             var results = modelo.ListarProductos();
             return Json(results);
         }
+        [HttpPost]
+        public int AgregarACarrito(String codigo)
+        {
+            QuerysModel modelo = new QuerysModel();
+            String cod_usuario = Session["Cod_usuario"].ToString();
+            var ar = modelo.AgregarACarrito(codigo, cod_usuario);
+
+            return ar;         
+        }
+        public JsonResult ListarCarrito()
+        {
+            QuerysModel modelo = new QuerysModel();
+            String cod_usuario = Session["Cod_usuario"].ToString();
+            var results = modelo.ListarCarrito(cod_usuario);
+            return Json(results);
+        }
+
     }
 }

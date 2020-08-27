@@ -14,6 +14,24 @@ namespace ProyectoFinal.Models
 
             return result.ToList();
         }
+        public List<PRODUCTO> ListarCarrito(String usuario)
+        {
+            var result = BD.Database.SqlQuery<PRODUCTO>("EXEC LISTARCARRITO @COD_USUARIO ="+usuario);
+
+            return result.ToList();
+        }
+        public int AgregarACarrito(String cod_producto, String cod_usuario)
+        {
+            System.Data.Entity.Core.Objects.ObjectParameter AffectedRows = new System.Data.Entity.Core.Objects.ObjectParameter("AR", typeof(Int32));
+            using (var context = new CARRITO_DE_COMPRAEntities())
+            {
+                context.AGREGARACARRITO(cod_usuario, cod_producto, AffectedRows);
+            }
+
+            int ar = Convert.ToInt32(AffectedRows.Value);
+
+            return ar;
+        }
 
     }
 }

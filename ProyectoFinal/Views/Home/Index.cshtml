@@ -3,10 +3,10 @@
 }
 
 <link href="~/CSS/General.css" rel="stylesheet" />
-
+<link href="~/Content/animate.min.css" rel="stylesheet" />
 <button class="btn-flotante shadow">
-    <a href="carrito">
-        <img src="Img/shopping-cart.svg" width="27px" height="27px" alt="Carrito" />
+    <a href="/Carrito/Carrito">
+        <img src="/Img/shopping-cart.svg" width="27px" height="27px" alt="Carrito" />
         <span class="badge badge-info position-absolute" style="border-radius: 25px; margin-left:-37px; margin-top: -10px">2</span>
     </a>
 
@@ -20,4 +20,5 @@
 
 @section Scripts{
     @Scripts.Render("/JavaScripts/Querys.js")
+    @Scripts.Render("/vendor/bootstrap-notify.js")
 }

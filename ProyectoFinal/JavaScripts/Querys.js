@@ -11,7 +11,7 @@
                 plantilla += ` 
          <div class="col-3 mb-4">
             <div class="card border-0 shadow">
-                <img src="https://image.freepik.com/free-photo/close-up-body-butter-recipient_23-2148543042.jpg" class="card-img-top" alt="...">
+                <img src="${valor.IMAGEN}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-7">
@@ -41,8 +41,40 @@
 
 function AddToCart(e) {
 
-    var id = e.getAttribute("codigo");
+    var cod_producto = e.getAttribute("codigo").toString();
+    $.ajax({
+        type: "POST",
+        url: "/Querys/AgregarACarrito",
+        data:
+        {
+            codigo: cod_producto
+        },
+        cache: false,
+        success: function (resultado) {
+            console.log(resultado);
+            $.notify({
+                // options
+                message: 'Producto agregado al carrito'
+            }, {
+                // settings
+                type: "success",
+                showProgressbar: false,
+                placement: {
+                    from: "top",
+                    align: "right"
+                },
+                timer: 750,
+                animate: {
+                    enter: 'animated fadeInDownBig',
+                    exit: 'animated fadeOutUp'
+                }
+            });
+        },
+        error: function (xhr) {
 
-
+            console.log(xhr);
+            alert("Error has occurred..");
+        }
+    }); 
 
 }

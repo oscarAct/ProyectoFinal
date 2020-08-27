@@ -10,7 +10,11 @@ namespace ProyectoFinal.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            LoginController login = new LoginController();
+            if (!string.IsNullOrEmpty(Session["Usuario"] as string))
+                return View();
+            else
+                return View("../Login/IniciarSesion");
         }
 
         public ActionResult About()

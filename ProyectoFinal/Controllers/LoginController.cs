@@ -12,6 +12,7 @@ namespace ProyectoFinal.Controllers
         // GET: Login
         String autorizado = "No";
         public ActionResult IniciarSesion(){
+
             return View();
         }
         
@@ -20,16 +21,19 @@ namespace ProyectoFinal.Controllers
             List<USUARIO> Datos = new List<USUARIO>();
 
             string USER = "";
+            string USER_ID = "";
 
             LoginModel model = new LoginModel();
             if (Usuario != "" || Contrasena != ""){
                 Datos = model.ConsultarUsuario(Usuario, Contrasena);
                 if (Datos.Count > 0){
-                     USER = Datos.First().COD_USUARIO;
+                     USER = Datos.First().NOMBRE;
+                     USER_ID = Datos.First().COD_USUARIO;
                 }
             }
 
             Session["Usuario"] = USER;
+            Session["Cod_usuario"] = USER_ID;
 
             if (Datos.Count > 0) {
                 autorizado = "Si";

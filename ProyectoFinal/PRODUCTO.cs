@@ -19,16 +19,20 @@ namespace ProyectoFinal
         {
             this.CARRITO_DET = new HashSet<CARRITO_DET>();
             this.PEDIDO_DET = new HashSet<PEDIDO_DET>();
+            this.PRODUCTOSXUSUARIO = new HashSet<PRODUCTOSXUSUARIO>();
         }
     
         public string COD_PRODUCTO { get; set; }
         public string DESCRIPCION { get; set; }
         public string NOMBRE { get; set; }
         public Nullable<decimal> PRECIO { get; set; }
+        public string IMAGEN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARRITO_DET> CARRITO_DET { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PEDIDO_DET> PEDIDO_DET { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUCTOSXUSUARIO> PRODUCTOSXUSUARIO { get; set; }
     }
 }

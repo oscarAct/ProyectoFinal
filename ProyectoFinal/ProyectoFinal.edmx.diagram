@@ -17,6 +17,9 @@
         <AssociationConnector Association="CARRITO_DE_COMPRAModel.FK_PEDIDO_DET_PEDIDO_ENC" ManuallyRouted="false" />
         <AssociationConnector Association="CARRITO_DE_COMPRAModel.FK_PEDIDO_DET_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="CARRITO_DE_COMPRAModel.FK_PEDIDO_ENC_USUARIO" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CARRITO_DE_COMPRAModel.PRODUCTOSXUSUARIO" Width="1.5" PointX="5.25" PointY="9.25" />
+        <AssociationConnector Association="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_P__72C60C4A" />
+        <AssociationConnector Association="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_U__71D1E811" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,6 +19,7 @@ namespace ProyectoFinal
         {
             this.CARRITO_ENC = new HashSet<CARRITO_ENC>();
             this.PEDIDO_ENC = new HashSet<PEDIDO_ENC>();
+            this.PRODUCTOSXUSUARIO = new HashSet<PRODUCTOSXUSUARIO>();
         }
     
         public string COD_USUARIO { get; set; }
@@ -32,5 +33,7 @@ namespace ProyectoFinal
         public virtual ICollection<CARRITO_ENC> CARRITO_ENC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PEDIDO_ENC> PEDIDO_ENC { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUCTOSXUSUARIO> PRODUCTOSXUSUARIO { get; set; }
     }
 }
