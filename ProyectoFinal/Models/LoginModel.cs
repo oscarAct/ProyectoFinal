@@ -11,7 +11,7 @@ namespace ProyectoFinal.Models
 
         public List<USUARIO> ConsultarUsuario(string USUARIO, string CONTRASENA){
 
-            using (var contextoBD = new CARRITO_DE_COMPRAEntities()){
+            using (var contextoBD = new CARRITO_DE_COMPRAEntities1()){
                 List<USUARIO> Usuario = new List<USUARIO>();
 
                 Usuario = (from x in contextoBD.USUARIO

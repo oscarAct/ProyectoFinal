@@ -16,5 +16,6 @@ namespace ProyectoFinal
         public string NOMBRE { get; set; }
         public string DESCRIPCION { get; set; }
         public Nullable<decimal> PRECIO { get; set; }
+        public string IMAGEN { get; set; }
     }
 }

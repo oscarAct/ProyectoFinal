@@ -311,12 +311,23 @@
           </Key>
           <Property Name="COD_PRODUCTO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CARRITO_DET" Relationship="Self.FK_CARRITO_DET_PRODUCTO" FromRole="PRODUCTO" ToRole="CARRITO_DET" />
-          <NavigationProperty Name="PEDIDO_DET" Relationship="Self.FK_PEDIDO_DET_PRODUCTO" FromRole="PRODUCTO" ToRole="PEDIDO_DET" />
           <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PRECIO" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="IMAGEN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PRODUCTOSXUSUARIO" Relationship="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_P__72C60C4A" FromRole="PRODUCTO" ToRole="PRODUCTOSXUSUARIO" />
+          <NavigationProperty Name="CARRITO_DET" Relationship="Self.FK_CARRITO_DET_PRODUCTO" FromRole="PRODUCTO" ToRole="CARRITO_DET" />
+          <NavigationProperty Name="PEDIDO_DET" Relationship="Self.FK_PEDIDO_DET_PRODUCTO" FromRole="PRODUCTO" ToRole="PEDIDO_DET" />
+          <NavigationProperty Name="PRODUCTOSXUSUARIO" Relationship="Self.FK__PRODUCTOS__COD_P__72C60C4A" FromRole="PRODUCTO" ToRole="PRODUCTOSXUSUARIO" />
+        </EntityType>
+        <EntityType Name="PRODUCTOSXUSUARIO">
+          <Key>
+            <PropertyRef Name="ID_PXU" />
+          </Key>
+          <Property Name="ID_PXU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COD_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="COD_PRODUCTO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="FACTURADO" Type="Boolean" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK__PRODUCTOS__COD_P__72C60C4A" FromRole="PRODUCTOSXUSUARIO" ToRole="PRODUCTO" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK__PRODUCTOS__COD_U__71D1E811" FromRole="PRODUCTOSXUSUARIO" ToRole="USUARIO" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -330,7 +341,7 @@
           <Property Name="DIRECCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CARRITO_ENC" Relationship="Self.FK_CARRITO_ENC_USUARIO" FromRole="USUARIO" ToRole="CARRITO_ENC" />
           <NavigationProperty Name="PEDIDO_ENC" Relationship="Self.FK_PEDIDO_ENC_USUARIO" FromRole="USUARIO" ToRole="PEDIDO_ENC" />
-          <NavigationProperty Name="PRODUCTOSXUSUARIO" Relationship="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_U__71D1E811" FromRole="USUARIO" ToRole="PRODUCTOSXUSUARIO" />
+          <NavigationProperty Name="PRODUCTOSXUSUARIO" Relationship="Self.FK__PRODUCTOS__COD_U__71D1E811" FromRole="USUARIO" ToRole="PRODUCTOSXUSUARIO" />
         </EntityType>
         <Association Name="FK_CARRITO_DET_CARRITO_ENC">
           <End Role="CARRITO_ENC" Type="Self.CARRITO_ENC" Multiplicity="1" />
@@ -404,12 +415,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CARRITO_DE_COMPRAEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__PRODUCTOS__COD_P__72C60C4A">
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="0..1" />
+          <End Role="PRODUCTOSXUSUARIO" Type="Self.PRODUCTOSXUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO">
+              <PropertyRef Name="COD_PRODUCTO" />
+            </Principal>
+            <Dependent Role="PRODUCTOSXUSUARIO">
+              <PropertyRef Name="COD_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCTOS__COD_U__71D1E811">
+          <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+          <End Role="PRODUCTOSXUSUARIO" Type="Self.PRODUCTOSXUSUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="COD_USUARIO" />
+            </Principal>
+            <Dependent Role="PRODUCTOSXUSUARIO">
+              <PropertyRef Name="COD_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CARRITO_DE_COMPRAEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CARRITO_DET" EntityType="Self.CARRITO_DET" />
           <EntitySet Name="CARRITO_ENC" EntityType="Self.CARRITO_ENC" />
           <EntitySet Name="PEDIDO_DET" EntityType="Self.PEDIDO_DET" />
           <EntitySet Name="PEDIDO_ENC" EntityType="Self.PEDIDO_ENC" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
+          <EntitySet Name="PRODUCTOSXUSUARIO" EntityType="Self.PRODUCTOSXUSUARIO" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
           <AssociationSet Name="FK_CARRITO_DET_CARRITO_ENC" Association="Self.FK_CARRITO_DET_CARRITO_ENC">
             <End Role="CARRITO_ENC" EntitySet="CARRITO_ENC" />
@@ -435,12 +471,11 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="PEDIDO_ENC" EntitySet="PEDIDO_ENC" />
           </AssociationSet>
-          <EntitySet Name="PRODUCTOSXUSUARIO" EntityType="CARRITO_DE_COMPRAModel.PRODUCTOSXUSUARIO" />
-          <AssociationSet Name="FK__PRODUCTOS__COD_P__72C60C4A" Association="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_P__72C60C4A">
+          <AssociationSet Name="FK__PRODUCTOS__COD_P__72C60C4A" Association="Self.FK__PRODUCTOS__COD_P__72C60C4A">
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
             <End Role="PRODUCTOSXUSUARIO" EntitySet="PRODUCTOSXUSUARIO" />
           </AssociationSet>
-          <AssociationSet Name="FK__PRODUCTOS__COD_U__71D1E811" Association="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_U__71D1E811">
+          <AssociationSet Name="FK__PRODUCTOS__COD_U__71D1E811" Association="Self.FK__PRODUCTOS__COD_U__71D1E811">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="PRODUCTOSXUSUARIO" EntitySet="PRODUCTOSXUSUARIO" />
           </AssociationSet>
@@ -453,47 +488,7 @@
           <FunctionImport Name="LISTARCARRITO" ReturnType="Collection(CARRITO_DE_COMPRAModel.LISTARCARRITO_Result)">
           <Parameter Name="COD_USUARIO" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="AGREGARACARRITO1">
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-            <Parameter Name="PRODUCTO" Mode="In" Type="String" />
-            <Parameter Name="AR" Mode="InOut" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
-        <EntityType Name="PRODUCTOSXUSUARIO">
-          <Key>
-            <PropertyRef Name="ID_PXU" />
-          </Key>
-          <Property Name="ID_PXU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="COD_USUARIO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COD_PRODUCTO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="FACTURADO" Type="Boolean" />
-          <NavigationProperty Name="PRODUCTO" Relationship="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_P__72C60C4A" FromRole="PRODUCTOSXUSUARIO" ToRole="PRODUCTO" />
-          <NavigationProperty Name="USUARIO" Relationship="CARRITO_DE_COMPRAModel.FK__PRODUCTOS__COD_U__71D1E811" FromRole="PRODUCTOSXUSUARIO" ToRole="USUARIO" />
-        </EntityType>
-        <Association Name="FK__PRODUCTOS__COD_P__72C60C4A">
-          <End Type="CARRITO_DE_COMPRAModel.PRODUCTO" Role="PRODUCTO" Multiplicity="0..1" />
-          <End Type="CARRITO_DE_COMPRAModel.PRODUCTOSXUSUARIO" Role="PRODUCTOSXUSUARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO">
-              <PropertyRef Name="COD_PRODUCTO" />
-            </Principal>
-            <Dependent Role="PRODUCTOSXUSUARIO">
-              <PropertyRef Name="COD_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PRODUCTOS__COD_U__71D1E811">
-          <End Type="CARRITO_DE_COMPRAModel.USUARIO" Role="USUARIO" Multiplicity="0..1" />
-          <End Type="CARRITO_DE_COMPRAModel.PRODUCTOSXUSUARIO" Role="PRODUCTOSXUSUARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="COD_USUARIO" />
-            </Principal>
-            <Dependent Role="PRODUCTOSXUSUARIO">
-              <PropertyRef Name="COD_USUARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="LISTAR_PRODUCTOS_Result">
           <Property Type="String" Name="COD_PRODUCTO" Nullable="false" MaxLength="8" />
           <Property Type="String" Name="DESCRIPCION" Nullable="false" MaxLength="255" />
@@ -505,13 +500,14 @@
           <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="DESCRIPCION" Nullable="false" MaxLength="255" />
           <Property Type="Decimal" Name="PRECIO" Nullable="true" Precision="19" />
+          <Property Type="String" Name="IMAGEN" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CARRITO_DE_COMPRAModelStoreContainer" CdmEntityContainer="CARRITO_DE_COMPRAEntities">
+        <EntityContainerMapping StorageEntityContainer="CARRITO_DE_COMPRAModelStoreContainer" CdmEntityContainer="CARRITO_DE_COMPRAEntities1">
           <EntitySetMapping Name="CARRITO_DET">
             <EntityTypeMapping TypeName="CARRITO_DE_COMPRAModel.CARRITO_DET">
               <MappingFragment StoreEntitySet="CARRITO_DET">
@@ -571,11 +567,21 @@
           <EntitySetMapping Name="PRODUCTO">
             <EntityTypeMapping TypeName="CARRITO_DE_COMPRAModel.PRODUCTO">
               <MappingFragment StoreEntitySet="PRODUCTO">
-                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
-                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="COD_PRODUCTO" ColumnName="COD_PRODUCTO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOSXUSUARIO">
+            <EntityTypeMapping TypeName="CARRITO_DE_COMPRAModel.PRODUCTOSXUSUARIO">
+              <MappingFragment StoreEntitySet="PRODUCTOSXUSUARIO">
+                <ScalarProperty Name="ID_PXU" ColumnName="ID_PXU" />
+                <ScalarProperty Name="COD_USUARIO" ColumnName="COD_USUARIO" />
+                <ScalarProperty Name="COD_PRODUCTO" ColumnName="COD_PRODUCTO" />
+                <ScalarProperty Name="FACTURADO" ColumnName="FACTURADO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -591,16 +597,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PRODUCTOSXUSUARIO">
-            <EntityTypeMapping TypeName="CARRITO_DE_COMPRAModel.PRODUCTOSXUSUARIO">
-              <MappingFragment StoreEntitySet="PRODUCTOSXUSUARIO">
-                <ScalarProperty Name="FACTURADO" ColumnName="FACTURADO" />
-                <ScalarProperty Name="COD_PRODUCTO" ColumnName="COD_PRODUCTO" />
-                <ScalarProperty Name="COD_USUARIO" ColumnName="COD_USUARIO" />
-                <ScalarProperty Name="ID_PXU" ColumnName="ID_PXU" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AGREGARACARRITO" FunctionName="CARRITO_DE_COMPRAModel.Store.AGREGARACARRITO" />
           <FunctionImportMapping FunctionImportName="LISTAR_PRODUCTOS" FunctionName="CARRITO_DE_COMPRAModel.Store.LISTAR_PRODUCTOS">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CARRITO_DE_COMPRAModel.LISTAR_PRODUCTOS_Result">
@@ -618,10 +615,10 @@
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AGREGARACARRITO1" FunctionName="CARRITO_DE_COMPRAModel.Store.AGREGARACARRITO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

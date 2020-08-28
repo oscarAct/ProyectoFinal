@@ -14,7 +14,7 @@ $.ajax({
             plantilla += ` 
                 <tr>
                     <th scope="row"><img src="${valor.IMAGEN}" alt="Alternate Text" width="60px" height="70px" /></th>
-                    <td><i class="zmdi zmdi-close-circle text-danger"></i></td>
+                    <td><i class="zmdi zmdi-close-circle text-danger" codigo="${valor.COD_PRODUCTO}"></i></td>
                     <td>${valor.NOMBRE}</td>
                     <td>${valor.DESCRIPCION}</td>
                     <td>${valor.PRECIO}</td>
